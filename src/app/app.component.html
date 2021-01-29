@@ -1,0 +1,47 @@
+<div style="display: flex; flex-direction: column; height: 100%; max-height: 100%;">
+
+  <div style="display: flex; flex-direction: column; margin: 15px;">
+    <mat-form-field class="example-full-width">
+      <mat-label>Music Folder</mat-label>
+      <input matInput placeholder="Pfad..." [value]="path">
+    </mat-form-field>
+    <button mat-flat-button color="primary" (click)="getFiles()">Load</button>
+    <!-- <div style="text-align: right; margin-top: 5px;">
+      <mat-slide-toggle [checked]="autoplay" (change)="autoplay = !autoplay"
+      >Autoplay</mat-slide-toggle>
+    </div> -->
+  </div>
+  
+  <div style="flex-grow: 1; display: grid; overflow: auto;">
+    <mat-selection-list #shoes [multiple]="false">
+      <div mat-subheader>Songs</div>
+      
+      <ng-template *ngIf="true"></ng-template>
+      <mat-list-option *ngFor="let file of files" [ngStyle]="{'background-color': (file==currentlyPlaying) ? 'lightblue' : 'white'}" (click)="playSong(file)">
+        <mat-icon mat-list-icon>music_note</mat-icon> {{file}}
+      </mat-list-option>
+  
+    </mat-selection-list>
+  </div>
+
+  <div style="padding: 5px; padding-top: 10pxc; background-color: lightgray;">
+
+
+
+    <div style="display: flex; align-items: baseline; justify-content: space-evenly;">
+      <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="skipPrev()">
+        <mat-icon>skip_previous</mat-icon>
+      </button>
+  
+      <button mat-fab color="primary" aria-label="Example icon button with a bookmark icon" (click)="togglePlayback()">
+        <mat-icon *ngIf="!isPlaying">play_arrow</mat-icon>
+        <mat-icon *ngIf="isPlaying">pause</mat-icon>
+      </button>
+  
+      <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="skipNext()">
+        <mat-icon>skip_next</mat-icon>
+      </button>
+    </div>
+
+  </div>
+</div>
